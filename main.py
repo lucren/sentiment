@@ -78,6 +78,8 @@ tX = [e["vector"] for e in test_array]
 # CNN's are probably a good option http://www.aclweb.org/anthology/D14-1181
 clf = SVC(gamma='auto')
 clf.fit(X, Y)
+nY = clf.predict(X)
+tY = clf.predict(tX)
 # make a confusion matrix
 confusion = {
     0: {0: 0, 1: 0},
@@ -86,6 +88,7 @@ confusion = {
 for i in range(len(Y)):
     confusion[Y[i]][nY[i]] += 1
 print(confusion)
+print(clf.score(X, Y))
 # write the data to files
 train_data["pred"] = nY
 test_data["pred"] = tY
